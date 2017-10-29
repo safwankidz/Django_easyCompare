@@ -1,0 +1,12 @@
+{% if all_page %}
+    <h1> There goes my page: </h1>
+    <ul>
+        {% for page in all_page%}
+        <li> <a href="/search/{{page.page_id}}/"> {{page.info}} </a></li>
+        {% endfor %}
+    </ul>
+
+{% else %}
+    <h1> No Page to crawl </h1>
+
+{% endif%}
