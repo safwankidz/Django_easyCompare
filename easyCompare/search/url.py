@@ -12,5 +12,5 @@ urlpatterns = [
 
     url(r'^template/',views.template),
 
-    url(r'^render/$', views.renders,name='render'),
+    url(r'^renders/$', views.renders,name='render'),
 ]

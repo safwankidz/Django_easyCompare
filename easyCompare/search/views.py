@@ -39,7 +39,7 @@ def details(request,page_id):
 def first(request):
     all_page = PageCrawl.objects.all()
     context = {'all_page' : all_page,}
-    return renders(request,'page/homepage.html',context)
+    return render(request,'page/homepage.html',context)
     #return HttpResponse('<h1> The first page loh</h1>')
 
 
