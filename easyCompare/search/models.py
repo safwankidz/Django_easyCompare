@@ -11,6 +11,7 @@ class PageCrawl(models.Model):
 
 
 class SearchItem(models.Model):
+    page = models.ForeignKey(PageCrawl,on_delete=models.CASCADE)
     price = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     pic = models.CharField(max_length=250)

@@ -65,6 +65,10 @@ def store(request):
     # html parsing
     page_soup = soup(page_html, "html.parser")
 
+    page1 = PageCrawl.objects.get(pk=1)
+    item = SearchItem()
+    item.page = page1
+
     containers = page_soup.findAll("div", {"class": "top_params_col1"})
 
     for container in containers:
@@ -72,7 +76,7 @@ def store(request):
         brandpricelist = brandprice[0].text.strip()
         brandname = container.h2.a["title"]
 
-        item_instance = SearchItem.objects.create(price=brandpricelist, title=brandname )
+        item_instance = SearchItem.objects.create(price=brandpricelist, title=brandname,page=page1 )
 
     return HttpResponse("<h1> muahahahaha </h1>")
 
