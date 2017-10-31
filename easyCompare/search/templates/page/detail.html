@@ -5,7 +5,13 @@
     <title> Page Detail kot </title>
 </head>
 <body>
-    <h1> {{ page.info }}</h1>
-    <h2> {{ page.page_url }}</h2>
+    <h1> {{ webpage.info }}</h1>
+    <h2> {{ webpage.page_url }}</h2>
+    <h3> Total of :{{ webpage.searchitem_set.count }} product </h3>
+    <ul>
+        {% for item in webpage.searchitem_set.all %}
+            <li> {{ item.title }} - {{ item.price }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

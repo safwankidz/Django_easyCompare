@@ -8,6 +8,14 @@ from django.http import Http404
 import requests
 
 
+#main homepage
+def first(request):
+    all_page = PageCrawl.objects.all()
+    context = {'all_page' : all_page,}
+    return render(request,'page/homepage.html',context)
+    #return HttpResponse('<h1> The first page loh</h1>')
+
+
 #search main page
 def home(request):
     all_page = PageCrawl.objects.all()
@@ -29,18 +37,14 @@ def insert(request):
 #page for each website
 def details(request,page_id):
     try:
-        page = PageCrawl.objects.get(page_id=page_id)
+        webpage = PageCrawl.objects.get(page_id=page_id)
     except PageCrawl.DoesNotExist:
         raise Http404('This page does not exists la, why you come here..pergi sana la ')
-    return render(request,'page/detail.html',{'page': page,})
+    context = {
+        'webpage': webpage,
 
-
-#homepage
-def first(request):
-    all_page = PageCrawl.objects.all()
-    context = {'all_page' : all_page,}
-    return render(request,'page/homepage.html',context)
-    #return HttpResponse('<h1> The first page loh</h1>')
+    }
+    return render(request,'page/detail.html',context)
 
 
 #insert data from scrap into model
@@ -65,9 +69,9 @@ def store(request):
     # html parsing
     page_soup = soup(page_html, "html.parser")
 
-    page1 = PageCrawl.objects.get(pk=1)
+    page3 = PageCrawl.objects.get(pk=3)
     item = SearchItem()
-    item.page = page1
+    item.page = page3
 
     containers = page_soup.findAll("div", {"class": "top_params_col1"})
 
@@ -76,7 +80,7 @@ def store(request):
         brandpricelist = brandprice[0].text.strip()
         brandname = container.h2.a["title"]
 
-        item_instance = SearchItem.objects.create(price=brandpricelist, title=brandname,page=page1 )
+        item_instance = SearchItem.objects.create(price=brandpricelist, title=brandname,page=page3 )
 
     return HttpResponse("<h1> muahahahaha </h1>")
 
