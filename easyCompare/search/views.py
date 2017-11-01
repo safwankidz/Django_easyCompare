@@ -3,7 +3,7 @@ from urllib.request import urlopen as uReq
 from .models import PageCrawl, SearchItem
 from bs4 import BeautifulSoup as soup
 from django.template import loader
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import Http404
 import requests
 
@@ -11,20 +11,13 @@ import requests
 #main homepage
 def first(request):
     all_page = PageCrawl.objects.all()
-    context = {'all_page' : all_page,}
-    return render(request,'page/homepage.html',context)
-    #return HttpResponse('<h1> The first page loh</h1>')
+    return render(request,'page/homepage.html',{'all_page' : all_page})
 
 
 #search main page
 def home(request):
-    all_page = PageCrawl.objects.all()
-    print(all_page)
-    html = ''
-    for pageCrawl in all_page:
-        url = '/search/'+str(pageCrawl.page_id)+'/'
-        html += '<a href ="' + url + '"> '+str(pageCrawl.info)+' </a> <br> '
-    return HttpResponse(html)
+    page = PageCrawl.objects.all()
+    return render(request,'page/index.html',{'all_page':page})
 
 
 #insert into PageCrawl
@@ -36,15 +29,8 @@ def insert(request):
 
 #page for each website
 def details(request,page_id):
-    try:
-        webpage = PageCrawl.objects.get(page_id=page_id)
-    except PageCrawl.DoesNotExist:
-        raise Http404('This page does not exists la, why you come here..pergi sana la ')
-    context = {
-        'webpage': webpage,
-
-    }
-    return render(request,'page/detail.html',context)
+    webpage = get_object_or_404(PageCrawl,page_id=page_id)
+    return render(request,'page/detail.html',{'webpage': webpage})
 
 
 #insert data from scrap into model
@@ -69,9 +55,8 @@ def store(request):
     # html parsing
     page_soup = soup(page_html, "html.parser")
 
-    page3 = PageCrawl.objects.get(pk=3)
-    item = SearchItem()
-    item.page = page3
+    #page3 = PageCrawl.objects.get(pk=3)
+    page3 = get_object_or_404(PageCrawl,pk=3)
 
     containers = page_soup.findAll("div", {"class": "top_params_col1"})
 
@@ -85,22 +70,28 @@ def store(request):
     return HttpResponse("<h1> muahahahaha </h1>")
 
 
-#template example
-def template(request):
-    all_page = PageCrawl.objects.all()
-    template = loader.get_template('page/index.html')
-    context = {
-        'all_page':all_page,
-    }
-    return HttpResponse(template.render(context,request))
-
-
 def renders(request):
     all_page = PageCrawl.objects.all()
-    context = {
-        'all_page': all_page,
-    }
-    return render(request,'page/index.html',context)
+    return render(request,'page/index.html',{'all_page': all_page})
 
 
+#template example - replace with render
+#def template(request):
+#    all_page = PageCrawl.objects.all()
+#    templates = loader.get_template('page/index.html')
+#    return HttpResponse(templates.render({'all_page':all_page,},request))
+
+#Http404 example - replace with getObjectOr404
+    #try:
+    #    webpage = PageCrawl.objects.get(page_id=page_id)
+    #except PageCrawl.DoesNotExist:
+    #    raise Http404('This page does not exists')
+
+#dynamic page example - oreplace with template.render
+# print(all_page)
+#    html = ''
+#    for pageCrawl in all_page:
+#        url = '/search/'+str(pageCrawl.page_id)+'/'
+#        html += '<a href ="' + url + '"> '+str(pageCrawl.info)+' </a> <br> '
+#    return HttpResponse(html)
 

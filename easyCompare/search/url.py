@@ -1,8 +1,10 @@
 from django.conf.urls import url
 from . import views
 
+app_name = 'search'
+
 urlpatterns = [
-    url(r'^$', views.home, name='search'),
+    url(r'^$', views.home, name='home'),
 
     url(r'^result/', views.insert),
 
@@ -10,7 +12,7 @@ urlpatterns = [
 
     url(r'^store/',views.store),
 
-    url(r'^template/',views.template),
-
     url(r'^renders/$', views.renders,name='render'),
+
+    #url(r'^template/',views.template),
 ]

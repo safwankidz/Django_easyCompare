@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Page Detail kot </title>
+    <title> Page Detail </title>
 </head>
 <body>
     <h1> {{ webpage.info }}</h1>
     <h2> {{ webpage.page_url }}</h2>
+    <img src = "https://www.mudah.my/img/mudah_fb_logo.jpg"> </img>
     <h3> Total of :{{ webpage.searchitem_set.count }} product </h3>
     <ul>
         {% for item in webpage.searchitem_set.all %}
