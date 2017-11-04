@@ -56,7 +56,7 @@ def store(request):
     page_soup = soup(page_html, "html.parser")
 
     #page3 = PageCrawl.objects.get(pk=3)
-    page3 = get_object_or_404(PageCrawl,pk=3)
+    page3 = get_object_or_404(PageCrawl,pk=7)
 
     containers = page_soup.findAll("div", {"class": "top_params_col1"})
 
@@ -65,7 +65,15 @@ def store(request):
         brandpricelist = brandprice[0].text.strip()
         brandname = container.h2.a["title"]
 
-        item_instance = SearchItem.objects.create(price=brandpricelist, title=brandname,page=page3 )
+        item_instance = SearchItem.objects.create(page=page3,
+                                                  price=brandpricelist,
+                                                  title=brandname,
+                                                  pic='',
+                                                  rating=0,
+                                                  detail=' ',
+                                                  item_link=' ',
+                                                  condition='',
+                                                  location='')
 
     return HttpResponse("<h1> muahahahaha </h1>")
 
@@ -73,6 +81,12 @@ def store(request):
 def renders(request):
     all_page = PageCrawl.objects.all()
     return render(request,'page/index.html',{'all_page': all_page})
+
+
+def specs(request):
+    item = SearchItem.objects.all()
+    return render(request,'page/product.html', {'item':item})
+#{% url 'search:specs' page.page_id %}
 
 
 #template example - replace with render

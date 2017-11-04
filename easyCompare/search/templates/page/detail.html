@@ -7,12 +7,14 @@
 <body>
     <h1> {{ webpage.info }}</h1>
     <h2> {{ webpage.page_url }}</h2>
-    <img src = "https://www.mudah.my/img/mudah_fb_logo.jpg"> </img>
+    <img src = "{{ webpage.logo}}"> </img>
     <h3> Total of :{{ webpage.searchitem_set.count }} product </h3>
+
     <ul>
         {% for item in webpage.searchitem_set.all %}
-            <li> {{ item.title }} - {{ item.price }}</li>
+            <li> <a href="/search/{{item.title}}/">  {{ item.title }} - {{ item.price }} </a></li>
         {% endfor %}
     </ul>
+
 </body>
 </html>

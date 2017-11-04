@@ -2,7 +2,7 @@
     <h1> There goes my page: </h1>
     <ul>
         {% for page in all_page%}
-        <li> <a href="{% url 'search:details' page.page_id %}"> {{page.info}} </a></li>
+        <li> <a href="{% url 'search:details' page.page_id %}"> {{page.info}}-{{page.page_id}} </a></li>
         {% endfor %}
     </ul>
 
