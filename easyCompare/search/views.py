@@ -36,7 +36,7 @@ def details(request,page_id):
 #insert data from scrap into model
 def store(request):
     # userCategory = input('Enter category first :')
-    userKeyword = 'iphone'
+    userKeyword = 'iphone7'
     # different things different it last code
     catergoryURL = 'Mobile-Phones-and-Gadgets-3020/'
     frontMudahURL = 'https://www.mudah.my/malaysia/'
@@ -75,7 +75,7 @@ def store(request):
                                                   condition='',
                                                   location='')
 
-    return HttpResponse("<h1> muahahahaha </h1>")
+    return
 
 
 def renders(request):
@@ -83,9 +83,9 @@ def renders(request):
     return render(request,'page/index.html',{'all_page': all_page})
 
 
-def specs(request):
+def specs(request,title):
     item = SearchItem.objects.all()
-    return render(request,'page/product.html', {'item':item})
+    return render(request,'page/product.html', {'item':item, 'title':title})
 #{% url 'search:specs' page.page_id %}
 
 
