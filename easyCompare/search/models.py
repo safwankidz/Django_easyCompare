@@ -21,6 +21,7 @@ class SearchItem(models.Model):
     item_link = models.CharField(max_length=250)
     condition = models.CharField(max_length=20)
     location = models.CharField(max_length=50)
+    URLstrip = models.CharField(max_length=250)
 
     def __str__(self):
         return self.title

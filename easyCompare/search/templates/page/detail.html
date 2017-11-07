@@ -12,7 +12,7 @@
 
     <ul>
         {% for item in webpage.searchitem_set.all %}
-            <li> <a href="/search/{{item.title}}/">  {{ item.title }} - {{ item.price }} </a></li>
+            <li> <a href="/search/{{item.URLstrip}}/">  {{ item.title }} - {{ item.price }} </a></li>
         {% endfor %}
     </ul>
 

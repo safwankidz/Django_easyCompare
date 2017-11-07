@@ -30,7 +30,7 @@ def insert(request):
 #page for each website
 def details(request,page_id):
     webpage = get_object_or_404(PageCrawl,page_id=page_id)
-    return render(request,'page/detail.html',{'webpage': webpage})
+    return render(request,'page/detail.html',{'webpage': webpage,})
 
 
 #insert data from scrap into model
@@ -65,6 +65,8 @@ def store(request):
         brandpricelist = brandprice[0].text.strip()
         brandname = container.h2.a["title"]
 
+        URLStrip = brandname.strip().replace(" ","-")
+
         item_instance = SearchItem.objects.create(page=page3,
                                                   price=brandpricelist,
                                                   title=brandname,
@@ -73,8 +75,8 @@ def store(request):
                                                   detail=' ',
                                                   item_link=' ',
                                                   condition='',
-                                                  location='')
-
+                                                  location='',
+                                                  URLstrip=URLStrip)
     return
 
 
@@ -86,7 +88,6 @@ def renders(request):
 def specs(request,title):
     item = SearchItem.objects.all()
     return render(request,'page/product.html', {'item':item, 'title':title})
-#{% url 'search:specs' page.page_id %}
 
 
 #template example - replace with render

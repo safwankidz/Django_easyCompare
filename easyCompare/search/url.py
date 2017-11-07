@@ -11,7 +11,9 @@ urlpatterns = [
     url(r'^(?P<page_id>[0-9]+)/$',views.details, name='details'),
 
     #navigate to product page - in progress
-    url(r'^search/(?P<title>[\w\ ]+)/$',views.specs, name='spec'),
+    url(r'^search/(?P<URLstrip>[%\w+\d+]+)/$',views.specs, name='spec'),
+
+    #url(r'^search/Iphone7256gb/$',views.specs),
 
     url(r'^store/',views.store),
 
