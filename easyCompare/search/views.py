@@ -85,9 +85,9 @@ def renders(request):
     return render(request,'page/index.html',{'all_page': all_page})
 
 
-def specs(request,title):
-    item = SearchItem.objects.all()
-    return render(request,'page/product.html', {'item':item, 'title':title})
+def specs(request,URLstrip):
+    item = get_object_or_404(SearchItem,URLstrip=URLstrip)
+    return render(request,'page/product.html', {'item':item,})
 
 
 #template example - replace with render
