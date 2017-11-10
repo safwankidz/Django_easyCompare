@@ -26,7 +26,9 @@ class estreetScrapEngine:
 			productdiv = container.findAll("h3",{"class":"product-name tit_info"})
 			pricediv = container.findAll("span",{"class":"rm_price old_price"})
 			limitloop = len(productdiv)
-			while n != limitloop: 
+			count = 0
+			while n != limitloop:
+
 				productnamelist = productdiv[n].a.text.strip()
 				pricetaglist = pricediv[n].text.strip()
 				URLStrip = productnamelist.strip().replace(" ", "-")
@@ -41,5 +43,9 @@ class estreetScrapEngine:
 														  location='',
 														  URLstrip=URLStrip)
 				n = n + 1
+				count = count+1
+				if count==10:
+					break
+
 
 		return

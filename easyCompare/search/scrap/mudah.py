@@ -28,7 +28,7 @@ class mudahScrapEngine:
 
 			URLStrip = brandname.strip().replace(" ", "-")
 			item_instance = models.SearchItem.objects.create(page=page,
-															 price=brandprice,
+															 price=brandpricelist,
 															 title=brandname,
 															 pic='',
 															 rating=0,

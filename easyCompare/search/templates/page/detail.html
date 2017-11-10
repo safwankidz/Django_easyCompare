@@ -1,20 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title> Page Detail </title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>EasyCompare | Lightweight price comparison using python</title>
+{% load static %}
+<link href="{% static '/css/theme2' %}" rel="stylesheet">
 </head>
-<body>
-    <h1> {{ webpage.info }}</h1>
-    <h2> {{ webpage.page_url }}</h2>
-    <img src = "{{ webpage.logo}}"> </img>
-    <h3> Total of :{{ webpage.searchitem_set.count }} product </h3>
 
-    <ul>
-        {% for item in webpage.searchitem_set.all %}
-            <li> <a href="/search/{{item.URLstrip}}/">  {{ item.title }} - {{ item.page }}  </a></li>
-        {% endfor %}
-    </ul>
+<body>
+    <!--<h3> Total of :{{ webpage.searchitem_set.count }} product </h3> -->
+    <!--
+<div class="container">
+    {% for item in webpage.searchitem_set.all %}
+    <div class="row">
+		<div class="well">
+        <h1 class="text-center"> {{ item.title }} </h1>
+        <div class="list-group">
+          <a href="/search/{{item.URLstrip}}" class="list-group-item active">
+                <div class="media col-md-3">
+                    <figure class="pull-left">
+                        <img class="media-object img-rounded img-responsive"  src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg" alt="placehold.it/350x250" >
+                    </figure>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="list-group-item-heading"> {{ item.page }} </h4>
+                    <p class="list-group-item-text"> {{item.detail}} </p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <h2> {{item.rating}} <small> Rating </small></h2>
+                    <button type="button" class="btn btn-default btn-lg btn-block"> Buy Now! </button>
+                    <div class="stars">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </div>
+                    <p> Average {{item.rating}} <small> / </small> {{item.rating}} </p>
+                </div>
+          </a>
+        </div>
+        </div>
+	</div>
+    {% endfor %}
+    -->
+<!--</div> -->
+<div>
+  <ul>
+      {% for item in webpage.searchitem_set.all %}
+
+    <li>
+      <img src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg" />
+      <h3> <a href="/search/{{item.URLstrip}}/">{{ item.title }}  </a> </h3>
+      <p>{{ item.page }}</p>
+    </li>
+
+      {% endfor %}
+  </ul>
+</div>
 
 </body>
-</html>

@@ -18,5 +18,4 @@ urlpatterns = [
 
     #url(r'^renders/$', views.renders,name='render'),
 
-    #url(r'^template/',views.template),
 ]

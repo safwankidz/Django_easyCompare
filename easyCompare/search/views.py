@@ -73,7 +73,6 @@ def specs(request,URLstrip):
     item = get_object_or_404(SearchItem,URLstrip=URLstrip)
     return render(request,'page/product.html', {'item':item,})
 
-
 #insert data from scrap into model
 #def store(request):
 #    # userCategory = input('Enter category first :')
@@ -119,12 +118,6 @@ def specs(request,URLstrip):
     #                                               URLstrip=URLStrip)
     # return
 
-
-#template example - replace with render
-#def template(request):
-#    all_page = PageCrawl.objects.all()
-#    templates = loader.get_template('page/index.html')
-#    return HttpResponse(templates.render({'all_page':all_page,},request))
 
 #Http404 example - replace with getObjectOr404
     #try:
