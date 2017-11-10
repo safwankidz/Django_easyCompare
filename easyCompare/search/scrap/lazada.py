@@ -26,6 +26,7 @@ class lazadaScrapEngine:
 			pricediv = container.findAll("div",{"class":"c-product-card__price"})
 			limitloop = len(productdiv)
 			n = 0
+			count = 0
 			while n!= limitloop:
 				productnamelist = productdiv[n].a.text.strip()
 				pricetaglist = pricediv[n].span.text.strip()
@@ -42,5 +43,8 @@ class lazadaScrapEngine:
 																 location='',
 																 URLstrip=URLStrip)
 				n = n + 1
+				count = count+1
+				if count==10:
+					break
 		
 		return

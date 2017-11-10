@@ -1,26 +1,24 @@
 from django.http import HttpResponse
-from urllib.request import urlopen as uReq
 from .models import PageCrawl, SearchItem
-from bs4 import BeautifulSoup as soup
 from django.shortcuts import render,get_object_or_404
 from .scrap import lazada
 from .scrap import lelong
 from .scrap import mudah
 from .scrap import elevenstreet
 from django.http import Http404
-from django.template import loader
-import requests
 
 
 #main homepage
-def first(request):
-    all_page = PageCrawl.objects.all()
-    return render(request,'page/index.html',{'all_page' : all_page})
+def home(request):
+    page = PageCrawl.objects.all()
+    return render(request,'page/index.html',{'page':page,})
 
 
 #search main page
-def home(request):
-    userkeyword = 'iphone7'
+def result(request):
+    search_input = request.POST.get('userkeyword', None)
+    SearchItem.objects.all().delete()
+    userkeyword = search_input
 
     # lazada
     lazadaMainURL = 'http://www.lazada.com.my/'

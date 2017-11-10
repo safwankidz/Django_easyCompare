@@ -16,7 +16,7 @@ class lelongScrapEngine:
 		bigcontainer = page_soup.findAll("div",{"class":"item"})
 		#productdiv = page_soup.findAll("div",{"class":"summary"})
 		#pricediv = page_soup.findAll("span",{"class":"price pull-right"})
-
+		count = 0
 		for container in bigcontainer:
 			productname = container.findAll("div",{"class":"summary"})
 			pricetag = container.findAll("span",{"class":"price pull-right"})
@@ -34,5 +34,8 @@ class lelongScrapEngine:
 															 condition='',
 															 location='',
 															 URLstrip=URLStrip)
+			count = count + 1
+			if count == 10:
+				break
 
 		return

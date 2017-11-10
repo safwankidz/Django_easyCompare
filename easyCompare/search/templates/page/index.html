@@ -60,10 +60,10 @@
 <!-- 				<div>
 					<i class="fa fa-shopping-basket" aria-hidden="true"></i>
 				</div> -->
-				<form method="POST" role="form">
+				<form method="POST" role="form" action="{% url 'search:result' %}">
 				{% csrf_token %}
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search here to compare your product" name="userkeyword">
+					<input type="text" class="form-control" placeholder="Search here to compare your product" name="userkeyword" value="">
       				<span class="input-group-btn">
         				<button type="submit" class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
       				</span>
@@ -72,13 +72,6 @@
     			<div>
     				<span class="desc-under-searchbar"><i><br> use keyword for items that you wish to compare : i.e phone, cars, house</i></span>
     			</div>
-<!-- 				<div class="brand-heading"><input type="text" name="seacrh" placeholder="Search your product here !"></div>
-				<p class="intro-text">
-
-				</p>
-				<a href="#about" class="btn btn-circle page-scroll">
-				<i class="fa fa-angle-double-down animated"></i>
-				</a> -->
 			</div>
 		</div>
 	</div>
