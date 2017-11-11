@@ -40,82 +40,30 @@ def result(request):
     lelongMainURL = 'https://www.lelong.com.my/catalog/all/list?TheKeyword='
     llconcatURL = lelongMainURL + userkeyword
 
-    # carousell
-    # carousellMainURL = 'https://carousell.com/search/products/?query='
-    # cconcatURL = carousellMainURL + userkeyword
-
+    #scraping from each website
     scrapMudahResult = mudah.mudahScrapEngine()
-    displayMudahResult = scrapMudahResult.scrapIt(mconcatURL)
-
+    scrapMudahResult.scrapIt(mconcatURL)
     scrapLazadaResult = lazada.lazadaScrapEngine()
-    displayLazadaResult = scrapLazadaResult.scrapIt(lconcatURL)
-
+    scrapLazadaResult.scrapIt(lconcatURL)
     scrapLelongResult = lelong.lelongScrapEngine()
-    displayLelongResult = scrapLelongResult.scrapIt(llconcatURL)
-
+    scrapLelongResult.scrapIt(llconcatURL)
     scrapElevenstreetResult = elevenstreet.estreetScrapEngine()
-    displayEstreetResult = scrapElevenstreetResult.scrapIt(esconcatURL)
+    scrapElevenstreetResult.scrapIt(esconcatURL)
 
     page = PageCrawl.objects.all()
-    return render(request,'page/homepage.html',{'all_page':page})
-
-
-#page for search result page
-def details(request,page_id):
-    webpage = get_object_or_404(PageCrawl,page_id=page_id)
-    return render(request,'page/detail.html',{'webpage': webpage,})
+    return render(request,'page/homepage.html', {'all_page': page})
 
 
 #page for product specification and details
 def specs(request,URLstrip):
     item = get_object_or_404(SearchItem,URLstrip=URLstrip)
-    return render(request,'page/product.html', {'item':item,})
+    return render(request, 'page/product.html', {'item':item,})
 
-#insert data from scrap into model
-#def store(request):
-#    # userCategory = input('Enter category first :')
-#    userKeyword = 'iphone7'
-#    # different things different it last code
-#    catergoryURL = 'Mobile-Phones-and-Gadgets-3020/'
-#    frontMudahURL = 'https://www.mudah.my/malaysia/'
-#    # middleMudahURL = userKeyword
-#    lastMudahURL = '-for-sale'
-#    fLastMudahURL = '?lst=0&fs=1&w=3&cg=3020&q='
-#    sLastMudahURL = '&so=1&st=s'
-#    concatURL = frontMudahURL + catergoryURL + userKeyword + lastMudahURL + fLastMudahURL + userKeyword + sLastMudahURL
-#    my_url = concatURL
-#
-#     # opening up connection, grabbing the page
-#     uClient = uReq(my_url)
-#     page_html = uClient.read()
-#     uClient.close()
 
-    # html parsing
-    # page_soup = soup(page_html, "html.parser")
-    #
-    # #page3 = PageCrawl.objects.get(pk=3)
-    # page3 = get_object_or_404(PageCrawl,pk=7)
-    #
-    # containers = page_soup.findAll("div", {"class": "top_params_col1"})
-    #
-    # for container in containers:
-    #     brandprice = container.findAll("div", {"class": "ads_price"})
-    #     product_price = brandprice[0].text.strip()
-    #     title = container.h2.a["title"]
-    #     URLStrip = title.strip().replace(" ","-")
-    #
-    #     item_instance = SearchItem.objects.create(page=page3,
-    #                                               price=product_price,
-    #                                               title=title,
-    #                                               pic='',
-    #                                               rating=0,
-    #                                               detail=' ',
-    #                                               item_link=' ',
-    #                                               condition='',
-    #                                               location='',
-    #                                               URLstrip=URLStrip)
-    # return
-
+# page for search result page
+def details(request,page_id):
+    webpage = get_object_or_404(PageCrawl,page_id=page_id)
+    return render(request, 'page/detail.html', {'webpage': webpage})
 
 #Http404 example - replace with getObjectOr404
     #try:
@@ -123,24 +71,10 @@ def specs(request,URLstrip):
     #except PageCrawl.DoesNotExist:
     #    raise Http404('This page does not exists')
 
-#dynamic page example - oreplace with template.render
+#dynamic page example - replace with template.render
 # print(all_page)
 #    html = ''
 #    for pageCrawl in all_page:
 #        url = '/search/'+str(pageCrawl.page_id)+'/'
 #        html += '<a href ="' + url + '"> '+str(pageCrawl.info)+' </a> <br> '
 #    return HttpResponse(html)
-
-
-#insert page info into PageCrawl
-#def insert(request):
-#    my_url = 'https://testwebsite.com/search/products/?query=iphone'
-#    page_instance = PageCrawl.objects.create(info="test",page_url=my_url)
-#    return HttpResponse("<h1> Meh </h1>")
-
-
-#example for render
-#def renders(request):
-#    all_page = PageCrawl.objects.all()
-#    return render(request,'page/index.html',{'all_page': all_page})
-

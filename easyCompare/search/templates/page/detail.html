@@ -7,18 +7,42 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>EasyCompare | Lightweight price comparison using python</title>
-<!-- {% load static %}
-<link href="{% static '/css/theme2' %}" rel="stylesheet"> -->
+{% load static %}
+<link href="{% static '/css/theme.css' %}" rel="stylesheet">
 {% load static %}
 <link href="{% static 'css/theme2.css' %}" rel="stylesheet">
 {% load static %}
 <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static '/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+{% load static %}
+<link href="{% static 'http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,400italic,700italic' %}" rel="stylesheet" type="text/css">
+{% load static %}
+<link href="{% static 'http://fonts.googleapis.com/css?family=Montserrat:400,700' %}" rel="stylesheet" type="text/css">
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 </head>
-
 <body>
-
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 <div class="container">
-
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+		<i class="fa fa-bars"></i>
+		</button>
+		<a class="navbar-brand page-scroll" href="http://127.0.0.1:8000/index.html">
+		EasyCompare </a>
+	</div>
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+		<ul class="nav navbar-nav">
+			<li> <a href="http://127.0.0.1:8000/index.html">Home</a> </li>
+			<li> <a href="#">About</a> 	</li>
+			<li> <a href="#">Contact</a> </li>
+		</ul>
+	</div>
+	<!-- /.navbar-collapse -->
+</div>
+</nav>
+<div class="container">
     <div class="row">
 		<div class="well">
         {% for item in webpage.searchitem_set.all %}
@@ -53,23 +77,7 @@
         {% endfor %}
         </div>
 	</div>
-
-
-<!--</div> -->
-<!-- <div>
-  <ul>
-      {% for item in webpage.searchitem_set.all %}
-
-    <li>
-      <img src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg" />
-      <h3> <a href="/search/{{item.URLstrip}}/">{{ item.title }}  </a> </h3>
-      <p>{{ item.page }}</p>
-    </li>
-
-      {% endfor %}
-  </ul>
-</div> -->
-
+</div>
 </body>
 <!-- jQuery -->
 {% load static %}
