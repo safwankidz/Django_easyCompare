@@ -51,7 +51,7 @@ def result(request):
     scrapElevenstreetResult.scrapIt(esconcatURL)
 
     page = PageCrawl.objects.all()
-    return render(request,'page/homepage.html', {'all_page': page})
+    return render(request, 'page/homepage.html', {'all_page': page})
 
 
 #page for product specification and details

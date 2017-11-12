@@ -12,4 +12,6 @@ urlpatterns = [
 
     url(r'^(?P<URLstrip>[^~,]+)/$', views.specs, name='spec'),
 
+    url('^compare$', views.details, name='detail' ),
+
 ]
