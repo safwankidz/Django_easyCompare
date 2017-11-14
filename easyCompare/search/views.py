@@ -61,8 +61,9 @@ def specs(request,URLstrip):
 
 
 # page for search result page
-def details(request,page_id):
-    webpage = get_object_or_404(PageCrawl,page_id=page_id)
+def details(request):
+    item = request.POST.get('items',None)
+    webpage = get_object_or_404(PageCrawl,page_id=item)
     return render(request, 'page/detail.html', {'webpage': webpage})
 
 #Http404 example - replace with getObjectOr404
