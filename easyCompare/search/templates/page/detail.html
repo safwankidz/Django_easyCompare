@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,36 +46,45 @@
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star-empty"></span>
+=======
+{% extends 'page/base.html' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="well">
+            {% for item in webpage.searchitem_set.all %}
+            <div class="list-group">
+              <a href="/search/{{item.URLstrip}}" class="list-group-item active">
+                    <div class="media col-md-3">
+                        <figure class="pull-left">
+                            <img class="media-object img-rounded img-responsive"  src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg" alt="placehold.it/350x250" >
+                        </figure>
+>>>>>>> a9e5f7f6ee5c83e543f6c6033d47ee18daef1227
                     </div>
-                    <p> Average {{item.rating}} <small> / </small> {{item.rating}} </p>
-                </div>
-          </a>
+                    <div class="col-md-6">
+                        <p class="text-left"> {{ item.title }}  </p>
+                        <p> {{ item.price }}</p>
+                        <p class="list-group-item-heading"> {{ item.detail }} </p>
+                        <p class="list-group-item-text"> {{item.condition}} </p>
+                        <p class="list-group-item-text"> {{item.location}} </p>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <h2> <!-- {{item.rating}} --> <small> Rating </small></h2>
+                        <button type="button" class="btn btn-default btn-lg btn-block"> Buy Now! </button>
+                        <div class="stars">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        </div>
+                        <p> Average {{item.rating}} <small> / </small> {{item.rating}} </p>
+                    </div>
+              </a>
+            </div>
+            {% endfor %}
+            </div>
         </div>
-        {% endfor %}
-        </div>
-	</div>
-
-
-<!--</div> -->
-<!-- <div>
-  <ul>
-      {% for item in webpage.searchitem_set.all %}
-
-    <li>
-      <img src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg" />
-      <h3> <a href="/search/{{item.URLstrip}}/">{{ item.title }}  </a> </h3>
-      <p>{{ item.page }}</p>
-    </li>
-
-      {% endfor %}
-  </ul>
-</div> -->
-
-</body>
-<!-- jQuery -->
-{% load static %}
-<script src="{% static 'js/jquery.js' %}"></script>
-<!-- Bootstrap Core JavaScript -->
-{% load static %}
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-</html>
+    </div>
+{%endblock%}
