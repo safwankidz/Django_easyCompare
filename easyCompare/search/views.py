@@ -1,39 +1,24 @@
 from django.http import HttpResponse
-from urllib.request import urlopen as uReq
 from .models import PageCrawl, SearchItem
-from bs4 import BeautifulSoup as soup
-from django.template import loader
 from django.shortcuts import render,get_object_or_404
+from .scrap import lazada
+from .scrap import lelong
+from .scrap import mudah
+from .scrap import elevenstreet
 from django.http import Http404
+<<<<<<< HEAD
 import logging
 import requests
+=======
+>>>>>>> 301f5070833eb2adc7b4fd2768c268026a505990
 
 
 #main homepage
-def first(request):
-    all_page = PageCrawl.objects.all()
-    return render(request,'page/homepage.html',{'all_page' : all_page})
-
-
-#search main page
 def home(request):
     page = PageCrawl.objects.all()
-    return render(request,'page/index.html',{'all_page':page})
+    return render(request,'page/index.html',{'page':page,})
 
-
-#insert into PageCrawl
-def insert(request):
-    my_url = 'https://testwebsite.com/search/products/?query=iphone'
-    page_instance = PageCrawl.objects.create(info="test",page_url=my_url)
-    return HttpResponse("<h1> Meh </h1>")
-
-
-#page for each website
-def details(request,page_id):
-    webpage = get_object_or_404(PageCrawl,page_id=page_id)
-    return render(request,'page/detail.html',{'webpage': webpage})
-
-
+<<<<<<< HEAD
 #insert data from scrap into model
 def store(request):
     userkeyword = request.POST.get('userkeyword')
@@ -68,18 +53,60 @@ def store(request):
     #     item_instance = SearchItem.objects.create(price=brandpricelist, title=brandname,page=page3 )
     print(userkeyword)
     return HttpResponse("<h1> muahahahaha </h1>")
+=======
+
+#search main page
+def result(request):
+    search_input = request.POST.get('userkeyword', None)
+    SearchItem.objects.all().delete()
+    userkeyword = search_input
+
+    # lazada
+    lazadaMainURL = 'http://www.lazada.com.my/'
+    lazadaLastURL = '/?itemperpage=60&sc=MS0F&searchredirect='
+    lconcatURL = lazadaMainURL + userkeyword + lazadaLastURL + userkeyword
+
+    # mudah
+    mudahMainURL = 'https://www.mudah.my/malaysia/'
+    mudahMiddleURL = '-for-sale'
+    mudahfLastURL = '?lst=0&fs=1&w=3&cg=0&q='
+    mudahsLastURL = '&so=1&st=s'
+    mconcatURL = mudahMainURL + userkeyword + mudahMiddleURL + mudahfLastURL + userkeyword + mudahsLastURL
+
+    # elevenstreet
+    elevenstreetMainURL = 'http://www.11street.my/totalsearch/TotalSearchAction/searchTotal?kwd='
+    esconcatURL = elevenstreetMainURL + userkeyword
+
+    # lelong
+    lelongMainURL = 'https://www.lelong.com.my/catalog/all/list?TheKeyword='
+    llconcatURL = lelongMainURL + userkeyword
+
+    #scraping from each website
+    scrapMudahResult = mudah.mudahScrapEngine()
+    scrapMudahResult.scrapIt(mconcatURL)
+    scrapLazadaResult = lazada.lazadaScrapEngine()
+    scrapLazadaResult.scrapIt(lconcatURL)
+    scrapLelongResult = lelong.lelongScrapEngine()
+    scrapLelongResult.scrapIt(llconcatURL)
+    scrapElevenstreetResult = elevenstreet.estreetScrapEngine()
+    scrapElevenstreetResult.scrapIt(esconcatURL)
+
+    page = PageCrawl.objects.all()
+    return render(request, 'page/homepage.html', {'all_page': page})
+>>>>>>> 301f5070833eb2adc7b4fd2768c268026a505990
 
 
-def renders(request):
-    all_page = PageCrawl.objects.all()
-    return render(request,'page/index.html',{'all_page': all_page})
+#page for product specification and details
+def specs(request,URLstrip):
+    item = get_object_or_404(SearchItem,URLstrip=URLstrip)
+    return render(request, 'page/product.html', {'item':item,})
 
 
-#template example - replace with render
-#def template(request):
-#    all_page = PageCrawl.objects.all()
-#    templates = loader.get_template('page/index.html')
-#    return HttpResponse(templates.render({'all_page':all_page,},request))
+# page for search result page
+def details(request):
+    item = request.POST.get('items',None)
+    webpage = get_object_or_404(PageCrawl,page_id=item)
+    return render(request, 'page/detail.html', {'webpage': webpage})
 
 #Http404 example - replace with getObjectOr404
     #try:
@@ -87,11 +114,10 @@ def renders(request):
     #except PageCrawl.DoesNotExist:
     #    raise Http404('This page does not exists')
 
-#dynamic page example - oreplace with template.render
+#dynamic page example - replace with template.render
 # print(all_page)
 #    html = ''
 #    for pageCrawl in all_page:
 #        url = '/search/'+str(pageCrawl.page_id)+'/'
 #        html += '<a href ="' + url + '"> '+str(pageCrawl.info)+' </a> <br> '
 #    return HttpResponse(html)
-
