@@ -1,8 +1,33 @@
+@font-face {
+  font-family: Light;
+  src:url("../fonts/Montserrat-UltraLight.otf") format("opentype");
+}
+
+@font-face {
+  font-family: LessLight;
+  src:url("../fonts/Montserrat-Light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Bold;
+  src:url("../fonts/Montserrat-SemiBold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: BlackBold;
+  src:url("../fonts/Montserrat-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Regular;
+  src:url("../fonts/Montserrat-Regular.otf") format("opentype");
+}
 
 body {
 	width:100%;
 	height:100%;
-	font-family:Open Sans,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	/*font-family:Open Sans,"Helvetica Neue",Helvetica,Arial,sans-serif;*/
+	font-family: 'Regular';
 	color:#fff;
 	background-color:#000;
 	 font-weight:300;
@@ -14,7 +39,7 @@ html {
 h1,h2,h3,h4,h5,h6 {
 	margin:0 0 35px;
 	text-transform:uppercase;
-	font-family:Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family:'Regular';
 	font-weight:700;
 	letter-spacing:1px;
 }
@@ -47,7 +72,7 @@ a:hover,a:focus {
 	margin-bottom:0;
 	border-bottom:1px solid rgba(255,255,255,.3);
 	text-transform:uppercase;
-	font-family:Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family:'Bold';
 	background-color:#000;
 }
 .navbar-custom .navbar-brand {
@@ -104,11 +129,11 @@ a:hover,a:focus {
 		 .navbar-custom.top-nav-collapse {
 		 padding:0;
 		/*border-bottom:1px solid rgba(255,255,255,.3);*/
-		color:#333;
-		background:darkorange;
+		color:white;
+		background:#585592;
 	}
 	.navbar-custom.top-nav-collapse a {
-		color:#333;
+		color:white;
 		display:inline-block;
 	}
 }
@@ -119,7 +144,7 @@ a:hover,a:focus {
 	padding:100px 0 100px 0;
 	text-align:center;
 	color:#fff;
-	background-image:radial-gradient(circle at 50% 50%,rgba(0,0,0,0.46),rgba(0,0,0,0.88)),url('http://unsplash.it/1600/1400?random=9');
+	background-image:radial-gradient(circle at 50% 50%,rgba(0,0,0,0.46),rgba(0,0,0,0.88)),url('../img/main-bg-new.jpg');*/
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
 	background-size:cover;
@@ -403,7 +428,7 @@ section:after {
 	clear:both;
 }
 section {
-	background-color:orange; /*#f9f9f9*/
+	background-color:#7a7bae; /*#f9f9f9*/
 	color:#333;
 	overflow:hidden;
 }
@@ -447,9 +472,25 @@ section {
 }
 .desc-under-searchbar
 {
-	color: gray;
+	color: #cf4d4b;
 }
 #portfolio
 {
-	background-color: orange;
+	background-color: #7a7bae;
 }
+.white-font
+{
+	color: white !important;
+}
+.white-icons
+{
+	width: 10px;
+	height: 10px;
+}
+/*
+	Supahands Color scheme
+	red = color: #cf4d4b;
+	ungu = color: #7a7bae;
+	hijau = color : #96cd91;
+	biru = color : #272f6e;
+ */
