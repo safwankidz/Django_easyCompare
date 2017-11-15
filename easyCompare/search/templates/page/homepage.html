@@ -7,14 +7,19 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>EasyCompare | Lightweight price comparison using python</title>
+{% load static %}
 <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet">
 <!-- Custom CSS -->
-<link href="css/theme.css" rel="stylesheet">
+{% load static %}
+<link href="{% static '/css/theme.css' %}" rel="stylesheet">
 <!-- Custom Fonts -->
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,400italic,700italic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+{% load static %}
+<link href="{% static '/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+{% load static %}
+<link href="{% static 'http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,400italic,700italic' %}" rel="stylesheet" type="text/css">
+{% load static %}
+<link href="{% static 'http://fonts.googleapis.com/css?family=Montserrat:400,700' %}" rel="stylesheet" type="text/css">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -52,15 +57,18 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-				<div>
+<!-- 				<div>
 					<i class="fa fa-shopping-basket" aria-hidden="true"></i>
-				</div>
+				</div> -->
+				<form method="POST" role="form">
+				{% csrf_token %}
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search here to compare your product">
+					<input type="text" class="form-control" placeholder="Search here to compare your product" name="userkeyword">
       				<span class="input-group-btn">
-        				<button class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+        				<button type="submit" class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
       				</span>
     			</div>
+    			</form>
     			<div>
     				<span class="desc-under-searchbar"><i><br> use keyword for items that you wish to compare : i.e phone, cars, house</i></span>
     			</div>
@@ -195,12 +203,18 @@
 </div>
 </footer>
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+{% load static %}
+<script src="{% static 'js/jquery.js' %}"></script>
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+{% load static %}
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
 <!-- Plugin JavaScript -->
-<script src="js/jquery.easing.min.js"></script>
+{% load static %}
+<script src="{% static 'js/jquery.easing.min.js' %}"></script>
 <!-- Custom Theme JavaScript -->
-<script src="js/theme.js"></script>
+{% load static %}
+<script src="{% static 'js/theme.js' %}"></script>
+{% load static %}
+<script src="{% static 'js/tipspopover.js' %}"></script>
 </body>
 </html>

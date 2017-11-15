@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup as soup
 from django.template import loader
 from django.shortcuts import render,get_object_or_404
 from django.http import Http404
+import logging
 import requests
 
 
@@ -35,38 +36,37 @@ def details(request,page_id):
 
 #insert data from scrap into model
 def store(request):
+    userkeyword = request.POST.get('userkeyword')
     # userCategory = input('Enter category first :')
-    userKeyword = 'iphone'
+    # userKeyword = input('Enter keyword to search : ')
     # different things different it last code
-    catergoryURL = 'Mobile-Phones-and-Gadgets-3020/'
-    frontMudahURL = 'https://www.mudah.my/malaysia/'
-    # middleMudahURL = userKeyword
-    lastMudahURL = '-for-sale'
-    fLastMudahURL = '?lst=0&fs=1&w=3&cg=3020&q='
-    sLastMudahURL = '&so=1&st=s'
-    concatURL = frontMudahURL + catergoryURL + userKeyword + lastMudahURL + fLastMudahURL + userKeyword + sLastMudahURL
-    my_url = concatURL
+    # frontMudahURL = 'https://www.mudah.my/malaysia/'
+    # lastMudahURL = '-for-sale'
+    # fLastMudahURL = '?lst=0&fs=1&w=3&cg=0&q='
+    # sLastMudahURL = '&so=1&st=s'
+    # concatURL = frontMudahURL + userKeyword + lastMudahURL + fLastMudahURL + userKeyword + sLastMudahURL
+    # my_url = concatURL
 
-    # opening up connection, grabbing the page
-    uClient = uReq(my_url)
-    page_html = uClient.read()
-    uClient.close()
+    # # opening up connection, grabbing the page
+    # uClient = uReq(my_url)
+    # page_html = uClient.read()
+    # uClient.close()
 
-    # html parsing
-    page_soup = soup(page_html, "html.parser")
+    # # html parsing
+    # page_soup = soup(page_html, "html.parser")
 
-    #page3 = PageCrawl.objects.get(pk=3)
-    page3 = get_object_or_404(PageCrawl,pk=3)
+    # #page3 = PageCrawl.objects.get(pk=3)
+    # page3 = get_object_or_404(PageCrawl,pk=3)
 
-    containers = page_soup.findAll("div", {"class": "top_params_col1"})
+    # containers = page_soup.findAll("div", {"class": "top_params_col1"})
 
-    for container in containers:
-        brandprice = container.findAll("div", {"class": "ads_price"})
-        brandpricelist = brandprice[0].text.strip()
-        brandname = container.h2.a["title"]
+    # for container in containers:
+    #     brandprice = container.findAll("div", {"class": "ads_price"})
+    #     brandpricelist = brandprice[0].text.strip()
+    #     brandname = container.h2.a["title"]
 
-        item_instance = SearchItem.objects.create(price=brandpricelist, title=brandname,page=page3 )
-
+    #     item_instance = SearchItem.objects.create(price=brandpricelist, title=brandname,page=page3 )
+    print(userkeyword)
     return HttpResponse("<h1> muahahahaha </h1>")
 
 
