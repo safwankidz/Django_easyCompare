@@ -2,19 +2,25 @@
 
 {% block body %}
     <div class="container">
+        {% if all_page %}
+        <form method="POST" action="{% url 'search:specs' %}">
+        {% csrf_token %}
+        {% for page in all_page %}
         <div class="row">
+            <h1> {{ page.info }}</h1>
             <div class="well">
-            {% for item in webpage.searchitem_set.all %}
+            {% for item in page.searchitem_set.all %}
             <div class="list-group">
+            <input type="checkbox" id="items" name="compare" value="{{ item.title }}">
               <a href="/search/{{item.URLstrip}}" class="list-group-item active">
                     <div class="media col-md-3">
                         <figure class="pull-left">
-                            <img class="media-object img-rounded img-responsive"  src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg" alt="placehold.it/350x250" >
+                            <img class="media-object img-rounded img-responsive"  src="http://fires-fireplaces.co.uk/image/cache/data/No-Image-Available-350x250.gif" alt="placehold.it/350x250" >
                         </figure>
                     </div>
                     <div class="col-md-6">
                         <p class="text-left"> {{ item.title }}  </p>
-                        <p> {{ item.price }}</p>
+                        <p class="list-group-price"> {{ item.price }}</p>
                         <p class="list-group-item-heading"> {{ item.detail }} </p>
                         <p class="list-group-item-text"> {{item.condition}} </p>
                         <p class="list-group-item-text"> {{item.location}} </p>
@@ -36,5 +42,18 @@
             {% endfor %}
             </div>
         </div>
+        {% endfor %}
+        <a href="http://127.0.0.1:8000/search/compare"><input type="submit" name="submit" value="Compare" ></a>
+        </form>
+        {% else %}
+        <h1> No Page to crawl </h1>
+        {% endif %}
     </div>
-{%endblock%}
+    </body>
+    {% load static %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <!-- Bootstrap Core JavaScript -->
+    {% load static %}
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </html>
+{% endblock %}

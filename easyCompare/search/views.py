@@ -5,10 +5,11 @@ from .scrap import lazada
 from .scrap import lelong
 from .scrap import mudah
 from .scrap import elevenstreet
+import sys
 from django.http import Http404
 
 
-#main homepage
+#index page
 def home(request):
     page = PageCrawl.objects.all()
     return render(request,'page/index.html',{'page':page,})
@@ -51,20 +52,26 @@ def result(request):
     scrapElevenstreetResult.scrapIt(esconcatURL)
 
     page = PageCrawl.objects.all()
-    return render(request, 'page/homepage.html', {'all_page': page})
+    return render(request, 'page/search_page.html', {'all_page': page})
 
 
-#page for product specification and details
-def specs(request,URLstrip):
-    item = get_object_or_404(SearchItem,URLstrip=URLstrip)
-    return render(request, 'page/product.html', {'item':item,})
+# page for one product only
+def details(request, URLstrip):
+    item = get_object_or_404(SearchItem, URLstrip=URLstrip)
+    return render(request, 'page/product_detail.html', {'item': item})
 
 
-# page for search result page
-def details(request):
-    item = request.POST.get('items',None)
-    webpage = get_object_or_404(PageCrawl,page_id=item)
-    return render(request, 'page/detail.html', {'webpage': webpage})
+#page for product comparison
+def specs(request):
+    compare_item = request.POST.getlist("compare")
+    print(compare_item)
+    item = SearchItem.objects.filter(title__in=compare_item)
+    print("test2")
+    print(item)
+    #item = get_object_or_404(SearchItem, title=compare_item)
+
+    return render(request, 'page/products_compare.html', {'item1': item})
+
 
 #Http404 example - replace with getObjectOr404
     #try:
