@@ -22,20 +22,26 @@ class lazadaScrapEngine:
 		page = get_object_or_404(models.PageCrawl, pk=6)
 
 		for container in mainbigcontainer:
-			productdiv = container.findAll("div",{"class":"c-product-card__description"})
-			pricediv = container.findAll("div",{"class":"c-product-card__price"})
-			limitloop = len(productdiv)
 			n = 0
 			count = 0
+			productdiv = container.findAll("div",{"class":"c-product-card__description"})
+			pricediv = container.findAll("div",{"class":"c-product-card__price"})
+			propicdiv = container.findAll("div",{"class":"c-product-card__img-placeholder"})
+			limitloop = len(productdiv)
 			while n!= limitloop:
 				productnamelist = productdiv[n].a.text.strip()
 				pricetaglist = pricediv[n].span.text.strip()
-
+				piclist = propicdiv[n].a.span["data-js-component-params"]
+				lcurlyr = piclist.replace("{","")
+				rcurlyr = lcurlyr.replace("}","")
+				srcr = rcurlyr.replace('"src"',"")
+				twodotr = srcr.replace(': "',"")
+				allr = twodotr.replace('"',"").strip()
 				URLStrip = productnamelist.strip().replace(" ", "-")
 				item_instance = models.SearchItem.objects.create(page=page,
 																 price=pricetaglist,
 																 title=productnamelist,
-																 pic='',
+																 pic=allr,
 																 rating=0,
 																 detail=' ',
 																 item_link=' ',
@@ -44,7 +50,7 @@ class lazadaScrapEngine:
 																 URLstrip=URLStrip)
 				n = n + 1
 				count = count+1
-				if count==10:
+				if count==5:
 					break
 		
 		return

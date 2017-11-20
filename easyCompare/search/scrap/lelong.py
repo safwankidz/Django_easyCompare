@@ -14,20 +14,20 @@ class lelongScrapEngine:
 		page = get_object_or_404(models.PageCrawl, pk=10)
 
 		bigcontainer = page_soup.findAll("div",{"class":"item"})
-		#productdiv = page_soup.findAll("div",{"class":"summary"})
-		#pricediv = page_soup.findAll("span",{"class":"price pull-right"})
+		
 		count = 0
 		for container in bigcontainer:
 			productname = container.findAll("div",{"class":"summary"})
 			pricetag = container.findAll("span",{"class":"price pull-right"})
+			productpic  = container.findAll("div",{"class":"pic-box"})
 			productnamelist = productname[0].a.text.strip()
 			pricetaglist = pricetag[0].b.text.strip()
-
+			piclist = productpic[0].a.span.img["data-original"]
 			URLStrip = productnamelist.strip().replace(" ", "-")
 			item_instance = models.SearchItem.objects.create(page=page,
 															 price=pricetaglist,
 															 title=productnamelist,
-															 pic='',
+															 pic=piclist,
 															 rating=0,
 															 detail=' ',
 															 item_link=' ',
@@ -35,7 +35,7 @@ class lelongScrapEngine:
 															 location='',
 															 URLstrip=URLStrip)
 			count = count + 1
-			if count == 10:
+			if count == 5:
 				break
 
 		return

@@ -23,19 +23,20 @@ class estreetScrapEngine:
 
 		for container in maincontainer:
 			n = 0
+			count = 0
 			productdiv = container.findAll("h3",{"class":"product-name tit_info"})
 			pricediv = container.findAll("span",{"class":"rm_price old_price"})
+			prodpic = container.findAll("div",{"class":"thumb"})
 			limitloop = len(productdiv)
-			count = 0
 			while n != limitloop:
-
 				productnamelist = productdiv[n].a.text.strip()
 				pricetaglist = pricediv[n].text.strip()
+				prodpiclist = prodpic[n].a.img["src"]
 				URLStrip = productnamelist.strip().replace(" ", "-")
 				item_instance = models.SearchItem.objects.create(page=page,
 														  price=pricetaglist,
 														  title=productnamelist,
-														  pic='',
+														  pic=prodpiclist,
 														  rating=0,
 														  detail=' ',
 														  item_link=' ',
@@ -44,8 +45,7 @@ class estreetScrapEngine:
 														  URLstrip=URLStrip)
 				n = n + 1
 				count = count+1
-				if count==10:
+				if count==5:
 					break
-
 
 		return
