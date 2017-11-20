@@ -1,11 +1,36 @@
+@font-face {
+  font-family: Light;
+  src:url("../fonts/Montserrat-UltraLight.otf") format("opentype");
+}
+
+@font-face {
+  font-family: LessLight;
+  src:url("../fonts/Montserrat-Light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Bold;
+  src:url("../fonts/Montserrat-SemiBold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: BlackBold;
+  src:url("../fonts/Montserrat-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Regular;
+  src:url("../fonts/Montserrat-Regular.otf") format("opentype");
+}
 
 body {
 	width:100%;
 	height:100%;
-	font-family:Open Sans,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	/*font-family:Open Sans,"Helvetica Neue",Helvetica,Arial,sans-serif;*/
+	font-family: 'Regular';
 	color:#fff;
-	background-color:#000;
-	 font-weight:300;
+	background-color:#7a7bae;
+	font-weight:300;
 }
 html {
 	width:100%;
@@ -14,11 +39,12 @@ html {
 h1,h2,h3,h4,h5,h6 {
 	margin:0 0 35px;
 	text-transform:uppercase;
-	font-family:Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family:'Regular';
 	font-weight:700;
 	letter-spacing:1px;
 }
 p {
+	font-family: 'Light' !important;
 	margin:0 0 25px;
 	font-size:18px;
 	line-height:1.5;
@@ -47,7 +73,7 @@ a:hover,a:focus {
 	margin-bottom:0;
 	border-bottom:1px solid rgba(255,255,255,.3);
 	text-transform:uppercase;
-	font-family:Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family:'Bold';
 	background-color:#000;
 }
 .navbar-custom .navbar-brand {
@@ -104,11 +130,11 @@ a:hover,a:focus {
 		 .navbar-custom.top-nav-collapse {
 		 padding:0;
 		/*border-bottom:1px solid rgba(255,255,255,.3);*/
-		color:#333;
-		background:darkorange;
+		color:white;
+		background:#585592;
 	}
 	.navbar-custom.top-nav-collapse a {
-		color:#333;
+		color:white;
 		display:inline-block;
 	}
 }
@@ -119,7 +145,7 @@ a:hover,a:focus {
 	padding:100px 0 100px 0;
 	text-align:center;
 	color:#fff;
-	background-image:radial-gradient(circle at 50% 50%,rgba(0,0,0,0.46),rgba(0,0,0,0.88)),url('http://unsplash.it/1600/1400?random=9');
+	background-image:radial-gradient(circle at 50% 50%,rgba(0,0,0,0.46),rgba(0,0,0,0.88)),url('../img/main-bg-new.jpg');*/
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
 	background-size:cover;
@@ -268,10 +294,11 @@ ul.banner-social-buttons {
 	}
 }
 footer {
-	padding:40px 0;
+	padding:20px 0;
 	z-index:1;
 	position:relative;
 	clear:both;
+	background:#333;
 }
 footer p {
 	margin:0;
@@ -315,20 +342,20 @@ p.lead {
 }
 .btnghost {
 	border:2px solid #333;
-	background-color:transparent;
+	background-color:#333;
 	padding:15px 20px;
 	letter-spacing:3px;
 	font-size:12px;
 	text-transform:uppercase;
 	font-weight:400;
-	color:#333;
+	color:white;
 	margin-top:20px;
 	display:inline-block;
 }
 .btnghost:hover {
-	background-color:#333;
+	background-color:#585592;
 	color:#fff;
-	border:2px solid #333;
+	border:2px solid #585592;
 }
 .bgcover {
 	background-size:cover;
@@ -403,9 +430,12 @@ section:after {
 	clear:both;
 }
 section {
-	background-color:orange; /*#f9f9f9*/
+	background-color:#7a7bae; /*#f9f9f9*/
 	color:#333;
 	overflow:hidden;
+}
+#about {
+	background-color: #7577a0;
 }
 .done {
 	display:none;
@@ -445,11 +475,52 @@ section {
 	outline:0;
 	outline: none;
 }
-.desc-under-searchbar
-{
-	color: gray;
+.desc-under-searchbar{
+	color: #cf4d4b;
 }
+#portfolio{
+	background-color: #7a7bae;
+}
+.white-font{
+	color: white !important;
+}
+.white-icons{
+	width: 200px;
+	height: 200px;
+	margin-bottom: 20px;
+}
+.padding-kit{
+	margin-top: 100px;
+}
+.list-group-item{
+	padding: 20px 10px 20px 10px !important;
+	border: none !important;
+}
+.content-rating{
+	border: 1px solid red;
+	padding: 15px 5px 15px 5px;
+}
+.media-object{
+	border: 1px solid red;
+}
+.title-bold{
+	font-family: 'Bold' !important;
+}
+.page-header{
+    border-bottom: none !important;
+    margin: 40px 0 -15px;
+}
+<<<<<<< HEAD:easyCompare/search/static/css/style.css
 #portfolio
 {
 	background-color: orange;
 }
+=======
+/*
+	Supahands Color scheme
+	red = color: #cf4d4b;
+	ungu = color: #7a7bae;
+	hijau = color : #96cd91;
+	biru = color : #272f6e;
+ */
+>>>>>>> 8d4315b8732696d084f28ecf642722b2400c85d4:easyCompare/search/static/css/style.css

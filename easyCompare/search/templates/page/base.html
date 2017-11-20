@@ -8,15 +8,18 @@
     <meta name="author" content="">
     <title>EasyCompare | Lightweight price comparison using python</title>
     {% load static %}
+<<<<<<< HEAD
     <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/theme2.css' %}" rel="stylesheet">
     <link href="{% static 'css/product_theme.css' %}" rel="stylesheet">
     <link href="{% static '/css/style.css' %}" rel="stylesheet">
+=======
+    <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static '/css/product-theme.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static '/css/detail-style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static '/css/style.css' %}" rel="stylesheet" type="text/css">
+>>>>>>> 8d4315b8732696d084f28ecf642722b2400c85d4
     <link href="{% static '/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,400italic,700italic' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'http://fonts.googleapis.com/css?family=Montserrat:400,700' %}" rel="stylesheet" type="text/css">
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -45,26 +48,29 @@
     {% endblock %}
 
     <!-- About Section -->
-    <section id="about">
+<!-- About Section -->
+<section id="about">
 <div class="container content-section text-center">
-	<div class="row">
-		<h2>Hi, we are EasyCompare</h2>
-		<div class="col-lg-8 col-lg-offset-2">
-			<p>
-				We do price comparison for e-commerce website.
-			</p>
-			<p>
-				<a href="#" class="btnghost"><i class="fa fa-download"></i> Print your result here</a>
-			</p>
-		</div>
-	</div>
+    <div class="row white-font">
+        <img class="white-icons" src="{% static '/img/icons/shop.svg' %}">
+        <h2 class="typewrite" data-period="2000" data-type='["Hi, we are EasyCompare"]'><span class="wrap"></span></h2>
+        <div class="col-lg-8 col-lg-offset-2">
+            <p>
+                EasyCompare is a comparison shopping site, aggregate price and products from famous online retailers like Lazada, Lelong and 11street.
+            </p>
+<!--             <p>
+                <a href="#" class="btnghost"><i class="fa fa-download"></i> Print your result here</a>
+            </p> -->
+        </div>
+    </div>
 </div>
 </section>
     <!-- Contact Section -->
     <section id="contact">
         <div class="container content-section text-center">
-            <div class="row">
+            <div class="row white-font">
                 <div class="col-lg-8 col-lg-offset-2">
+                    <img class="white-icons" src="{% static '/img/icons/connect-2.svg' %}">
                     <h2>Stay connected at</h2>
                     <p>
 
@@ -101,5 +107,8 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/jquery.easing.min.js' %}"></script>
     <script src="{% static 'js/theme.js' %}"></script>
+    <script src="{% static 'js/typewriter.js' %}"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 </body>
 </html>

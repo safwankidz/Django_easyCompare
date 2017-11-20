@@ -5,7 +5,11 @@ from .scrap import lazada
 from .scrap import lelong
 from .scrap import mudah
 from .scrap import elevenstreet
+<<<<<<< HEAD
 import sys
+=======
+# from .scrap import carousell
+>>>>>>> 8d4315b8732696d084f28ecf642722b2400c85d4
 from django.http import Http404
 
 
@@ -22,9 +26,11 @@ def result(request):
     userkeyword = search_input
 
     # lazada
-    lazadaMainURL = 'http://www.lazada.com.my/'
-    lazadaLastURL = '/?itemperpage=60&sc=MS0F&searchredirect='
-    lconcatURL = lazadaMainURL + userkeyword + lazadaLastURL + userkeyword
+    lazadaMainURL = 'https://www.lazada.com.my/catalog/?q='
+    lconcatURL = lazadaMainURL + userkeyword
+    # lazadaMainURL = 'http://www.lazada.com.my/'
+    # lazadaLastURL = '/?itemperpage=60&sc=MS0F&searchredirect='
+    # lconcatURL = lazadaMainURL + userkeyword + lazadaLastURL + userkeyword
 
     # mudah
     mudahMainURL = 'https://www.mudah.my/malaysia/'
@@ -41,6 +47,10 @@ def result(request):
     lelongMainURL = 'https://www.lelong.com.my/catalog/all/list?TheKeyword='
     llconcatURL = lelongMainURL + userkeyword
 
+    #carousell
+    # carousellMainURL = 'https://carousell.com/search/products/?query='
+    # cconcatURL = carousellMainURL + userkeyword
+
     #scraping from each website
     scrapMudahResult = mudah.mudahScrapEngine()
     scrapMudahResult.scrapIt(mconcatURL)
@@ -50,11 +60,14 @@ def result(request):
     scrapLelongResult.scrapIt(llconcatURL)
     scrapElevenstreetResult = elevenstreet.estreetScrapEngine()
     scrapElevenstreetResult.scrapIt(esconcatURL)
+    # scrapCarousellResult = carousell.carousellScrapEngine()
+    # scrapCarousellResult.scrapIt(cconcatURL)
 
     page = PageCrawl.objects.all()
     return render(request, 'page/search_page.html', {'all_page': page})
 
 
+<<<<<<< HEAD
 # page for one product only
 def details(request, URLstrip):
     item = get_object_or_404(SearchItem, URLstrip=URLstrip)
@@ -72,6 +85,20 @@ def specs(request):
 
     return render(request, 'page/products_compare.html', {'item1': item})
 
+=======
+#page for product comparison
+def specs(request):
+    compare_item = request.POST.get('compare')
+    print(compare_item)
+    item = get_object_or_404(SearchItem, compare_item)
+    return render(request, 'page/products_compare.html', {'item': item})
+
+
+# page for one product only
+def details(request, URLstrip):
+    item = get_object_or_404(SearchItem, URLstrip=URLstrip)
+    return render(request, 'page/product_detail.html', {'item': item })
+>>>>>>> 8d4315b8732696d084f28ecf642722b2400c85d4
 
 #Http404 example - replace with getObjectOr404
     #try:

@@ -6,8 +6,6 @@ import requests
 class carousellScrapEngine:
 
 	def scrapIt(self, cconcatURL):
-		
-		#my_url  = 'https://carousell.com/search/products/?query=iphone'
 		my_url = cconcatURL
 		#headers used to treat like human request 
 		#not using urllib because  it is like treat of bot
@@ -19,12 +17,30 @@ class carousellScrapEngine:
 
 		page = get_object_or_404(models.PageCrawl, pk=9)
 
-		gadgetname_h4 = page_soup.findAll("h4",{"class":"ProductCard__cardTitleContent___LESPy"})
-		for container in gadgetname_h4:
-			namelist = container.text
-
-		gadgetprice_span = page_soup.findAll("span",{"class":"ProductCard__cardPrice___1b7Lt"})
-		for container in gadgetprice_span:
-			pricelist = container["title"]
-
+		maincontainer = page_soup.findAll("div",{"class":"row card-row"})
+		for container in maincontainer:
+			prodname = container.findAll("h4",{"id":"productCardTitle"})
+			prodprice = container.findAll("span",{"class":"n-n"})
+			picdiv = container.findAll("a",{"class":"n-e"})
+			limitloop = len(prodname)
+			n = 0
+			count = 0
+			while n != limitloop:
+				prodnamelist = prodname[n].text
+				prodpricelist = prodprice[n]["title"]
+				piclist = picdiv[n].img["src"]
+				item_instance = models.SearchItem.objects.create(page=page,
+														  price=pricetaglist,
+														  title=productnamelist,
+														  pic=piclist,
+														  rating=0,
+														  detail=' ',
+														  item_link=' ',
+														  condition='',
+														  location='',
+														  URLstrip=URLStrip)
+				n = n+1
+				count = count+1
+				if count==10:
+					break
 		return

@@ -1,7 +1,7 @@
 {% extends 'page/base.html' %}
 
 {% block body %}
-    <div class="container">
+    <div class="container padding-kit">
         {% if all_page %}
         <form method="POST" action="{% url 'search:specs' %}">
         {% csrf_token %}
@@ -11,23 +11,29 @@
             <div class="well">
             {% for item in page.searchitem_set.all %}
             <div class="list-group">
+<<<<<<< HEAD:easyCompare/search/templates/page/search_page.html
             <input type="checkbox" id="items" name="compare" value="{{ item.title }}">
+=======
+            <form method="POST" role="form" action="{% url 'search:specs' %}">
+            {% csrf_token %}
+            <input type="checkbox" id="items" name="compare[]" value="{{ item.id }}">
+>>>>>>> 8d4315b8732696d084f28ecf642722b2400c85d4:easyCompare/search/templates/page/search_page.html
               <a href="/search/{{item.URLstrip}}" class="list-group-item active">
                     <div class="media col-md-3">
                         <figure class="pull-left">
-                            <img class="media-object img-rounded img-responsive"  src="http://fires-fireplaces.co.uk/image/cache/data/No-Image-Available-350x250.gif" alt="placehold.it/350x250" >
+                            {% load static %}
+                            <img class="media-object img-rounded img-responsive"  src="{{ item.pic }}">
                         </figure>
                     </div>
                     <div class="col-md-6">
-                        <p class="text-left"> {{ item.title }}  </p>
+                        <p class="text-left title-bold"> {{ item.title }}  </p>
                         <p class="list-group-price"> {{ item.price }}</p>
                         <p class="list-group-item-heading"> {{ item.detail }} </p>
                         <p class="list-group-item-text"> {{item.condition}} </p>
                         <p class="list-group-item-text"> {{item.location}} </p>
                     </div>
-                    <div class="col-md-3 text-center">
-                        <h2> <!-- {{item.rating}} --> <small> Rating </small></h2>
-                        <button type="button" class="btn btn-default btn-lg btn-block"> Buy Now! </button>
+                    <div class="col-md-3 text-center content-rating">
+                        <h2><small> Rating </small></h2>
                         <div class="stars">
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
@@ -36,6 +42,7 @@
                             <span class="glyphicon glyphicon-star-empty"></span>
                         </div>
                         <p> Average {{item.rating}} <small> / </small> {{item.rating}} </p>
+                        <button type="button" class="btn btn-default btn-lg btn-block"> Buy Now ! </button>
                     </div>
               </a>
             </div>
@@ -49,6 +56,12 @@
         <h1> No Page to crawl </h1>
         {% endif %}
     </div>
+<<<<<<< HEAD:easyCompare/search/templates/page/search_page.html
+=======
+    <div>
+        <a href="http://127.0.0.1:8000/search/compare"><input type="button" value="Compare" ></a>
+    </div>
+>>>>>>> 8d4315b8732696d084f28ecf642722b2400c85d4:easyCompare/search/templates/page/search_page.html
     </body>
     {% load static %}
     <script src="{% static 'js/jquery.js' %}"></script>
