@@ -5,7 +5,15 @@ from .scrap import lazada
 from .scrap import lelong
 from .scrap import mudah
 from .scrap import elevenstreet
+<<<<<<< HEAD
 # from .scrap import carousell
+=======
+<<<<<<< HEAD
+import sys
+=======
+# from .scrap import carousell
+>>>>>>> 8d4315b8732696d084f28ecf642722b2400c85d4
+>>>>>>> 4608f1e9fd1d0669f76d7808d3f20ebaad732f28
 from django.http import Http404
 
 
@@ -61,8 +69,33 @@ def result(request):
 
     page = PageCrawl.objects.all()
     return render(request, 'page/search_page.html', {'all_page': page})
+<<<<<<< HEAD
+=======
 
 
+<<<<<<< HEAD
+# page for one product only
+def details(request, URLstrip):
+    item = get_object_or_404(SearchItem, URLstrip=URLstrip)
+    return render(request, 'page/product_detail.html', {'item': item})
+
+
+#page for product comparison
+def specs(request):
+    compare_item = request.POST.getlist("compare")
+    print(compare_item)
+    item = SearchItem.objects.filter(title__in=compare_item)
+    print("test2")
+    print(item)
+    #item = get_object_or_404(SearchItem, title=compare_item)
+>>>>>>> 4608f1e9fd1d0669f76d7808d3f20ebaad732f28
+
+    return render(request, 'page/products_compare.html', {'item1': item})
+
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 4608f1e9fd1d0669f76d7808d3f20ebaad732f28
 #page for product comparison
 def specs(request):
     compare_item = request.POST.get('compare')
@@ -75,6 +108,10 @@ def specs(request):
 def details(request, URLstrip):
     item = get_object_or_404(SearchItem, URLstrip=URLstrip)
     return render(request, 'page/product_detail.html', {'item': item })
+<<<<<<< HEAD
+=======
+>>>>>>> 8d4315b8732696d084f28ecf642722b2400c85d4
+>>>>>>> 4608f1e9fd1d0669f76d7808d3f20ebaad732f28
 
 #Http404 example - replace with getObjectOr404
     #try:
